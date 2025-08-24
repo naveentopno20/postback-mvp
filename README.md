@@ -16,7 +16,7 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR-USERNAME/postback-mvp.git
+git clone https://github.com/naveentopno20/postback-mvp.git
 cd postback-mvp
 ```
 ### 2. Setup PostgreSQL
@@ -79,17 +79,15 @@ curl "http://localhost:4000/postback?affiliate_id=1&click_id=abc123&amount=100&c
 ```
 ## 🖼 Screenshots
 ### ➤ Affiliate List
-```bash
 This page shows all affiliates with options to view their dashboard or copy their unique Postback URL.
 
 ![Affiliate List](./screenshots/affiliate-list.png)
-```
+
 ### ➤ Dashboard Example
-```bash
 Displays clicks, conversions, and revenue metrics for each affiliate.
 
 ![Affiliate Dashboard](./screenshots/dashboard.png)
-```
+
 
 ## 🛠 Error Handling
 ```bash
