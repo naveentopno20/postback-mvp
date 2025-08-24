@@ -10,7 +10,10 @@ if (!DATABASE_URL) {
 export const pool = new Pool({
   connectionString: DATABASE_URL,
   max: 10,
-  idleTimeoutMillis: 30000
+  idleTimeoutMillis: 30000,
+  ssl: {
+    rejectUnauthorized: false  // ✅ Needed for Render PostgreSQL
+  }
 })
 
 export async function query(text, params) {

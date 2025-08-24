@@ -1,4 +1,8 @@
-export const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+export const API_BASE =
+  process.env.NEXT_PUBLIC_API_URL ??
+  (process.env.NODE_ENV === 'development'
+    ? 'http://localhost:4000'
+    : '');
 
 export async function apiGet<T = any>(path: string): Promise<T> {
   const url = `${API_BASE}${path}`
