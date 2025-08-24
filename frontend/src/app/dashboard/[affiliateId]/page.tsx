@@ -1,19 +1,35 @@
-import { apiGet } from '../../lib/api'
+"use client";
 
+import { useEffect, useState } from "react";
+import { apiGet } from "../../lib/api";
 
-async function getData(affiliateId: string) {
-  const [clicks, conversions] = await Promise.all([
-    apiGet(`/affiliates/${affiliateId}/clicks`),
-    apiGet(`/affiliates/${affiliateId}/conversions`),
-  ])
-  return { clicks: clicks.data, conversions: conversions.data }
-}
+export default function Dashboard({ params }: { params: { affiliateId: string } }) {
+  const { affiliateId } = params;
+  const [clicks, setClicks] = useState<any[]>([]);
+  const [conversions, setConversions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default async function Dashboard({ params }: { params: { affiliateId: string } }) {
-  const { affiliateId } = params
-  const { clicks, conversions } = await getData(affiliateId)
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const [clicksRes, conversionsRes] = await Promise.all([
+          apiGet(`/affiliates/${affiliateId}/clicks`),
+          apiGet(`/affiliates/${affiliateId}/conversions`),
+        ]);
+        setClicks(clicksRes.data);
+        setConversions(conversionsRes.data);
+      } catch (err) {
+        console.error("Error loading dashboard:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, [affiliateId]);
 
-  const total = conversions.reduce((sum: number, c: any) => sum + Number(c.amount), 0)
+  if (loading) return <p>Loading dashboard...</p>;
+
+  const total = conversions.reduce((sum, c) => sum + Number(c.amount), 0);
 
   return (
     <div>
