@@ -1,11 +1,10 @@
 import Link from "next/link";
+import { apiGet } from "./lib/api";
 
-export default function Home() {
-  const affiliates = [
-    { id: 1, name: "Affiliate #1" },
-    { id: 2, name: "Affiliate #2" },
-    { id: 3, name: "Affiliate #3" },
-  ];
+export default async function Home() {
+  // ✅ Fetch affiliates via proxy (avoids CORS issues)
+  const data = await apiGet<{ status: string; data: Array<{ id: number; name: string }> }>("/affiliates");
+  const affiliates = data.data;
 
   return (
     <div style={{ padding: 24 }}>
