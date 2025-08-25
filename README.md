@@ -5,6 +5,12 @@
 
 ---
 
+## 🌐 Live Demo
+- Frontend (Vercel): 👉 https://postback-mvp.vercel.app/
+- Backend (Render): 👉 https://affiliate-backend-a4s4.onrender.com
+
+---
+
 ## 📦 Tech Stack
 - **Backend:** Node.js, Express, PostgreSQL (`pg` library)  
 - **Frontend:** Next.js (React, TypeScript, TailwindCSS)  

@@ -1,4 +1,6 @@
 export const metadata = { title: 'Affiliate Dashboard' }
+export const dynamicParams = true;
+
 import React from 'react'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
