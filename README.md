@@ -87,7 +87,7 @@ curl "http://localhost:4000/postback?affiliate_id=1&click_id=abc123&amount=100&c
 ### ➤ Affiliate List
 This page shows all affiliates with options to view their dashboard or copy their unique Postback URL.
 
-![Affiliate List](./screenshots/affiliate-list.png)
+![Affiliate List](screenshots/affiliate-list.png?v=2)
 
 ### ➤ Dashboard Example
 Displays clicks, conversions, and revenue metrics for each affiliate.
