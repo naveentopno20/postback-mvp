@@ -13,17 +13,21 @@ const app = express()
 
 // Render/Vercel friendly configs
 const PORT = process.env.PORT || 4000
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || '*'
+
+// ✅ Lock frontend origin (fallback = Vercel deployment URL)
+const FRONTEND_ORIGIN =
+  process.env.FRONTEND_ORIGIN || 'https://postback-mvp.vercel.app'
 
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// ✅ allow CORS for frontend (later lock this to your deployed Vercel domain)
+// ✅ Enable CORS only for your frontend
 app.use(
   cors({
     origin: FRONTEND_ORIGIN,
-    credentials: false
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
   })
 )
 
@@ -42,4 +46,5 @@ app.use(errorHandler)
 
 app.listen(PORT, () => {
   console.log(`✅ Backend listening on port ${PORT}`)
+  console.log(`🌍 Allowed origin: ${FRONTEND_ORIGIN}`)
 })
